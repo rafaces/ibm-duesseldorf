@@ -12,11 +12,12 @@
 
 URL_IBM_BASE="http://www.eurest-extranet.de"
 URL_IBM_RESTAURANT=$URL_IBM_BASE"/eurest/cms/ibm-duesseldorf/de/restaurant"
+CALENDAR_WEEK=`date +%V`
 
 echo
 echo "Parsing IBM website..."
 pdf_path=`curl $URL_IBM_RESTAURANT \
-	| grep -m 1 "/eurest/export/sites/default.*pdf" \
+	| grep -m 1 "/eurest/export/sites/default.*pdf\".*>.*KW\s*$CALENDAR_WEEK" \
 	| sed 's/^.*href="//' \
 	| sed 's/" target=".*$//'`
 
