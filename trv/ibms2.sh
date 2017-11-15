@@ -4,7 +4,7 @@
 #     Rafael Alves <rafaces@gmail.com>
 #
 # Easy way to check IBM menu
-# 
+#
 # HOW TO USE
 # Commands:
 # ~$ ./ibms2.sh
@@ -29,7 +29,7 @@ echo "Checking whether $pdf_filename exists..."
 if [ ! -e $pdf_filename ]
 then
 	echo "$pdf_filename missing. Download file..."
-	wget $pdf_full_path
+	curl -O $pdf_full_path || wget $pdf_full_path
 else
 	echo "$pdf_filename exists!"
 fi
@@ -37,3 +37,6 @@ fi
 echo
 echo "Opening $pdf_filename..."
 open $pdf_filename
+sleep 20
+echo "Removing file..."
+rm $pdf_filename
