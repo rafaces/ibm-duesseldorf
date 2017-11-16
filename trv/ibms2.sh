@@ -14,7 +14,19 @@ URL_IBM_BASE="http://www.eurest-extranet.de"
 URL_IBM_RESTAURANT=$URL_IBM_BASE"/eurest/cms/ibm-duesseldorf/de/restaurant"
 CALENDAR_WEEK=`date +%V`
 
-echo
+function writeIBM {
+	echo " _____ ____  __  __"
+	echo "|_   _|  _ \|  \/  |"
+ 	echo "  | | | |_) | \  / |"
+	echo "  | | |  _ <| |\/| |"
+	echo " _| |_| |_) | |  | |"
+	echo "|_____|____/|_|  |_|"
+	echo "    With love <3"
+	echo
+	echo
+}
+
+writeIBM
 echo "Parsing IBM website..."
 pdf_path=`curl $URL_IBM_RESTAURANT \
 	| grep -m 1 "/eurest/export/sites/default.*pdf\".*>.*KW\s*$CALENDAR_WEEK" \
