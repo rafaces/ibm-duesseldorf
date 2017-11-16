@@ -1,27 +1,41 @@
 #!/bin/bash
-# Nome:
-#     Zhenlei Ji <zhenlei.ji@gmail.com>
+
+# Copyright 2017
 #     Rafael Alves <rafaces@gmail.com>
+#     Zhenlei Ji <zhenlei.ji@gmail.com>
 #
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+ 
+# DESCRIPTION
 # Easy way to check IBM menu
 #
 # HOW TO USE
 # Commands:
 # ~$ ./ibms2.sh
-#
 
 URL_IBM_BASE="http://www.eurest-extranet.de"
 URL_IBM_RESTAURANT=$URL_IBM_BASE"/eurest/cms/ibm-duesseldorf/de/restaurant"
 CALENDAR_WEEK=`date +%V`
 
 function writeIBM {
-	echo " _____ ____  __  __"
+	echo " _____ ____  __  __ "
 	echo "|_   _|  _ \|  \/  |"
  	echo "  | | | |_) | \  / |"
 	echo "  | | |  _ <| |\/| |"
 	echo " _| |_| |_) | |  | |"
 	echo "|_____|____/|_|  |_|"
-	echo "    With love <3"
+	echo "    With love <3.   "
 	echo
 	echo
 }
