@@ -38,6 +38,3 @@ fi
 echo
 echo "Opening $pdf_filename..."
 open $pdf_filename
-sleep 20
-echo "Removing file..."
-rm $pdf_filename
