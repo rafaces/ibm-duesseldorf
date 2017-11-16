@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
- 
+
 # DESCRIPTION
 # Easy way to check IBM menu
 #
@@ -29,13 +29,15 @@ URL_IBM_RESTAURANT=$URL_IBM_BASE"/eurest/cms/ibm-duesseldorf/de/restaurant"
 CALENDAR_WEEK=`date +%V`
 
 function writeIBM {
-	echo " _____ ____  __  __ "
-	echo "|_   _|  _ \|  \/  |"
- 	echo "  | | | |_) | \  / |"
-	echo "  | | |  _ <| |\/| |"
-	echo " _| |_| |_) | |  | |"
-	echo "|_____|____/|_|  |_|"
-	echo "    With love <3.   "
+	echo "███████████  ████████████      ████████      ████████"
+	echo "███████████  ███████████████   █████████    █████████"
+	echo "   █████        ████   █████     ████████  ████████  "
+	echo "   █████        ███████████      ████  ███ ███ ████  "
+	echo "   █████        ███████████      ████  ███████ ████  "
+	echo "   █████        ████   █████     ████   █████  ████  "
+	echo "███████████  ███████████████   ██████    ███   ██████"
+	echo "███████████  ████████████      ██████     █    ██████"
+	echo "                                        With love <3 "
 	echo
 	echo
 }
