@@ -50,7 +50,9 @@ pdf_path=`curl $URL_IBM_RESTAURANT \
 	| sed 's/" target=".*$//'`
 
 pdf_full_path=$URL_IBM_BASE$pdf_path
-pdf_filename=$(basename $pdf_path)
+pdf_base_name="SpeisenplanIBMKW"
+pdf_filename="$pdf_base_name$CALENDAR_WEEK.pdf"
+pdf_local_path="./$pdf_filename"
 
 echo
 echo "Checking whether $pdf_filename exists..."
@@ -58,7 +60,9 @@ echo "Checking whether $pdf_filename exists..."
 if [ ! -e $pdf_filename ]
 then
 	echo "$pdf_filename missing. Download file..."
-	curl -O $pdf_full_path || wget $pdf_full_path
+	curl $pdf_full_path -o $pdf_local_path || wget -O $pdf_local_path $pdf_full_path
+	echo "Deleting older files"
+	ls | grep -E "^$pdf_base_name([0-5]?[0-9]).pdf$" | grep -v "$pdf_filename" | xargs rm
 else
 	echo "$pdf_filename exists!"
 fi
