@@ -24,8 +24,8 @@
 # Commands:
 # ~$ ./ibms2.sh
 
-URL_IBM_BASE="http://www.eurest-extranet.de"
-URL_IBM_RESTAURANT=$URL_IBM_BASE"/eurest/cms/ibm-duesseldorf/de/restaurant"
+URL_IBM_BASE="http://ibm-duesseldorf.eurest.de"
+URL_IBM_RESTAURANT=$URL_IBM_BASE"/restaurant-duesseldorf/microsite/speiseplan"
 CALENDAR_WEEK=`date +%V`
 
 function writeIBM {
@@ -45,7 +45,7 @@ function writeIBM {
 writeIBM
 echo "Parsing IBM website..."
 pdf_path=`curl $URL_IBM_RESTAURANT \
-	| grep -m 1 "/eurest/export/sites/default.*pdf\".*>.*KW\s*$CALENDAR_WEEK" \
+	| grep -m 1 "/assets/ibm-duesseldorf/restaurant-duesseldorf/Microsite/.*pdf\".*>Speiseplan engl.*KW\s*$CALENDAR_WEEK" \
 	| sed 's/^.*href="//' \
 	| sed 's/" target=".*$//'`
 
