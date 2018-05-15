@@ -54,19 +54,29 @@ pdf_base_name="SpeisenplanIBMKW"
 pdf_filename="$pdf_base_name$CALENDAR_WEEK.pdf"
 pdf_local_path="./$pdf_filename"
 
-echo
-echo "Checking whether $pdf_filename exists..."
-
-if [ ! -e $pdf_filename ]
+if [ -z "$pdf_path" ]
 then
-	echo "$pdf_filename missing. Download file..."
-	curl $pdf_full_path -o $pdf_local_path || wget -O $pdf_local_path $pdf_full_path
-	echo "Deleting older files"
-	ls | grep -E "^$pdf_base_name([0-5]?[0-9]).pdf$" | grep -v "$pdf_filename" | xargs rm
+	echo "Something went wrong..."
 else
-	echo "$pdf_filename exists!"
-fi
+	echo "Checking whether $pdf_filename exists..."
 
-echo
-echo "Opening $pdf_filename..."
-open $pdf_filename
+	if [ ! -e $pdf_filename ] || [ ! -s $pdf_filename ]
+	then
+		echo "$pdf_filename missing. Download file..."
+		curl $pdf_full_path -o $pdf_local_path || wget -O $pdf_local_path $pdf_full_path
+		echo "Deleting older files"
+		ls | grep -E "^$pdf_base_name([0-5]?[0-9]).pdf$" | grep -v "$pdf_filename" | xargs rm
+	else
+		echo "$pdf_filename exists!"
+	fi
+
+	echo
+
+	if [ -s $pdf_filename ]
+	then
+		echo "Opening $pdf_filename..."
+		open $pdf_filename
+	else
+		echo "Something went wrong..."
+	fi
+fi
