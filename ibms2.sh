@@ -27,6 +27,7 @@
 URL_IBM_BASE="http://ibm-duesseldorf.eurest.de"
 URL_IBM_RESTAURANT=$URL_IBM_BASE"/restaurant-duesseldorf/microsite/speiseplan"
 CALENDAR_WEEK=`date +%V`
+CHECK_UPDATE=false
 
 function writeIBM {
 	echo "███████████  ████████████      ████████      ████████"
@@ -42,7 +43,20 @@ function writeIBM {
 	echo
 }
 
+function askupdate {
+	#20% chance of asking to check update
+	if (( $(( ( RANDOM % 10 )  + 1 )) > 8 ));
+	then
+		read -p "Check for updates (y/N)? " -n 1 -r
+		echo    # move to a new line
+		if [ "$REPLY" == "y" ] ; then
+			CHECK_UPDATE=true
+		fi
+	fi
+}
+
 writeIBM
+askupdate
 echo "Parsing IBM website..."
 pdf_path=`curl $URL_IBM_RESTAURANT \
 	| grep -m 1 "/assets/ibm-duesseldorf/restaurant-duesseldorf/Microsite/.*pdf\".*>Speiseplan engl.*KW\s*$CALENDAR_WEEK" \
@@ -80,5 +94,14 @@ else
 		open $pdf_filename
 	else
 		echo "Something went wrong..."
+	fi
+fi
+
+if [ "$CHECK_UPDATE" = true ];
+then
+	DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+	if [ -d "$DIR/.git" ]; then
+		echo "Checking for updates..."
+		git -C "$DIR" pull
 	fi
 fi
