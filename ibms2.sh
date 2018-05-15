@@ -56,7 +56,9 @@ pdf_local_path="./$pdf_filename"
 
 if [ -z "$pdf_path" ]
 then
-	echo "Something went wrong..."
+	echo
+	echo
+	echo "This week's menu is not available yet..."
 else
 	echo "Checking whether $pdf_filename exists..."
 
